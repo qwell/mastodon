@@ -94,8 +94,16 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         media_attachment.save!
 
         @next_media_attachments << media_attachment
+
+        if unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
+          Rails.logger.error "Skipping media download: #{media_attachment_parser.description}"
+          Sidekiq.logger.error "Skipping media download: #{media_attachment_parser.description}"
+          next
+        end
+
+        RedownloadMediaWorker.perform_async(media_attachment.id) if media_attachment.remote_url_previously_changed? || media_attachment.thumbnail_remote_url_previously_changed?
       rescue Addressable::URI::InvalidURIError => e
-        Rails.logger.debug { "Invalid URL in attachment: #{e}" }
+        Rails.logger.debug "Invalid URL in attachment: #{e}"
       end
     end
 
@@ -261,6 +269,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def skip_download?
     return @skip_download if defined?(@skip_download)
 
+    @skip_download = ENV['SKIP_DOWNLOADS'] == 'true'
     @skip_download ||= DomainBlock.reject_media?(@account.domain)
   end
 
