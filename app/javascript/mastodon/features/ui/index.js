@@ -356,7 +356,7 @@ class UI extends React.PureComponent {
 
   handleLayoutChange = debounce(() => {
     this.props.dispatch(clearHeight()); // The cached heights are no longer accurate, invalidate
-  }, 500, {
+  }, 5000, {
     trailing: true,
   });
 
