@@ -19,11 +19,13 @@
 /tmp
 /coverage
 /public/system
+/public/system_*
 /public/assets
 /public/packs
 /public/packs-test
 .env
 .env.production
+.env.production.*
 /node_modules/
 /build/
 
