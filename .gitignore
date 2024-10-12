@@ -19,13 +19,11 @@
 /tmp
 /coverage
 /public/system
-/public/system_*
 /public/assets
 /public/packs
 /public/packs-test
 .env
 .env.production
-.env.production.*
 /node_modules/
 /build/
 
@@ -76,3 +74,8 @@ docker-compose.override.yml
 
 # Ignore local-only rspec configuration
 .rspec-local
+
+# Ignore multi-instance files.
+/public/system_*
+.env.production.*
+docker-compose_*.yml
