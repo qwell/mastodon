@@ -438,7 +438,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def reset_preview_card!
     @status.reset_preview_card!
-    LinkCrawlWorker.perform_in(rand(CRAWL_DELAY), @status.id)
+    LinkCrawlWorker.perform_async(@status.id)
   end
 
   def broadcast_updates!
