@@ -79,11 +79,11 @@ services:
       - redis
       # - es
     volumes:
-      - ./public/system:/opt/mastodon/public/system
-      - ./app:/opt/mastodon/app
-      - ./bin:/opt/mastodon/bin
-      - ./config:/opt/mastodon/config
-      - ./lib:/opt/mastodon/lib
+      - ./public/system:/mastodon/public/system
+      - ./app:/mastodon/app
+      - ./bin:/mastodon/bin
+      - ./config:/mastodon/config
+      - ./lib:/mastodon/lib
 
   streaming:
     # You can uncomment the following lines if you want to not use the prebuilt image, for example if you have local code changes
@@ -120,11 +120,11 @@ services:
       - external_network
       - internal_network
     volumes:
-      - ./public/system:/opt/mastodon/public/system
-      - ./app:/opt/mastodon/app
-      - ./bin:/opt/mastodon/bin
-      - ./config:/opt/mastodon/config
-      - ./lib:/opt/mastodon/lib
+      - ./public/system:/mastodon/public/system
+      - ./app:/mastodon/app
+      - ./bin:/mastodon/bin
+      - ./config:/mastodon/config
+      - ./lib:/mastodon/lib
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 8' || false"]
 
