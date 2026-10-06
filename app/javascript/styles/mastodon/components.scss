@@ -1798,6 +1798,7 @@ body > [data-popover-placement] {
   align-items: center;
   gap: 18px;
   margin-top: 16px;
+  max-width: 600px;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -3058,7 +3059,7 @@ a.account__display-name {
       background-color: var(--color-bg-primary);
 
       @media screen and (min-width: $no-gap-breakpoint) {
-        max-width: 600px;
+        /* max-width: 600px; */
       }
     }
   }

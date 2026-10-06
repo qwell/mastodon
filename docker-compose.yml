@@ -111,6 +111,7 @@ services:
       # - es
     volumes:
       - ./public/system:/mastodon/public/system
+      - ./public/packs:/mastodon/public/packs
       - ./app:/mastodon/app
       - ./bin:/mastodon/bin
       - ./config:/mastodon/config
@@ -152,6 +153,7 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+      - ./public/packs:/mastodon/public/packs
       - ./app:/mastodon/app
       - ./bin:/mastodon/bin
       - ./config:/mastodon/config
